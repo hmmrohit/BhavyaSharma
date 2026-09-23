@@ -269,13 +269,15 @@
         aspect-ratio: 16/9;
       }
 
-      .video-wrap video {
+      /* Shared styles for both video and iframe */
+      .video-wrap video,
+      .video-wrap iframe {
         width: 100%;
         height: 100%;
         border-radius: 6px;
         background: #000;
-        display: block;
         outline: none;
+        border: none;
       }
 
       .lightbox-img {
@@ -519,7 +521,9 @@
         <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal cursor-pointer group shadow-lg" data-lightbox="images/workshop.jpeg">
           <img src="images/workshop.jpeg" alt="Workshop Session" class="w-full h-full object-cover" loading="lazy" />
         </div>
-        <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-1 group cursor-pointer shadow-lg" data-video="videos/Loomina.mp4">
+        
+        <!-- Replaced local video with YouTube data attribute -->
+        <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-1 group cursor-pointer shadow-lg" data-youtube="SGFCMLe1CPA">
           <img src="images/Loomina.jpeg" alt="Stage Performance" class="w-full h-full object-cover" loading="lazy" />
           <div class="absolute inset-0 flex items-center justify-center bg-dark/10 group-hover:bg-dark/30 transition-colors duration-500">
             <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/90 flex items-center justify-center text-dark group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-500 shadow-xl">
@@ -527,12 +531,15 @@
             </div>
           </div>
         </div>
+
         <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-2 cursor-pointer group shadow-lg" data-lightbox="images/2.jpeg">
           <img src="images/2.jpeg" alt="Dance Outfit Showcase" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal cursor-pointer group shadow-lg" data-lightbox="images/3.jpeg">
           <img src="images/3.jpeg" alt="Rehearsal Session" class="w-full h-full object-cover" loading="lazy" />
         </div>
+        
+        <!-- Local MP4 video preserved -->
         <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-1 group cursor-pointer shadow-lg" data-video="videos/rangtarang.mp4">
           <img src="images/rangtarang.jpeg" alt="Performance Showcase" class="w-full h-full object-cover" loading="lazy" />
           <div class="absolute inset-0 flex items-center justify-center bg-dark/10 group-hover:bg-dark/30 transition-colors duration-500">
@@ -541,6 +548,7 @@
             </div>
           </div>
         </div>
+
         <div class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-2 cursor-pointer group shadow-lg" data-lightbox="images/1.jpeg">
           <img src="images/1.jpeg" alt="Creative Concept" class="w-full h-full object-cover" loading="lazy" />
         </div>
@@ -586,7 +594,8 @@
     <div class="modal-backdrop" id="video-modal">
       <button class="modal-close" id="video-close" aria-label="Close video">&times;</button>
       <div class="video-wrap">
-        <video id="video-player" controls playsinline></video>
+        <video id="video-player" controls playsinline style="display: none;"></video>
+        <iframe id="youtube-player" style="display: none;" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -656,22 +665,40 @@
           });
         });
 
-        // 4. Video Modal
+        // 4. Video Modal (Updated for YouTube and Local MP4)
         const videoModal = document.getElementById("video-modal");
         const videoPlayer = document.getElementById("video-player");
+        const youtubePlayer = document.getElementById("youtube-player");
         const videoClose = document.getElementById("video-close");
 
+        // Handle local MP4 videos
         document.querySelectorAll("[data-video]").forEach((item) => {
           item.addEventListener("click", () => {
+            youtubePlayer.style.display = "none";
+            videoPlayer.style.display = "block";
             videoPlayer.src = item.dataset.video;
             videoModal.classList.add("active");
             videoPlayer.play().catch(() => {});
           });
         });
 
+        // Handle YouTube videos
+        document.querySelectorAll("[data-youtube]").forEach((item) => {
+          item.addEventListener("click", () => {
+            videoPlayer.style.display = "none";
+            youtubePlayer.style.display = "block";
+            // Construct the YouTube embed URL with autoplay enabled
+            youtubePlayer.src = `https://www.youtube.com/embed/${item.dataset.youtube}?autoplay=1`;
+            videoModal.classList.add("active");
+          });
+        });
+
         function closeVideo() {
+          // Stop local video
           videoPlayer.pause();
           videoPlayer.src = "";
+          // Stop YouTube video by clearing the source
+          youtubePlayer.src = ""; 
           videoModal.classList.remove("active");
         }
 
