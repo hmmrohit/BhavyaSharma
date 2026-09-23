@@ -1,0 +1,909 @@
+﻿<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhavya Sharma | Dancer & Performing Arts Facilitator</title>
+    <meta
+      name="description"
+      content="Portfolio of Bhavya Sharma â€” dancer, choreographer, performing arts facilitator, and theatre enthusiast."
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: "#161616",
+              accent: "#b8860b" /* Refined golden hue for better contrast */,
+              light: "#ffffff",
+              cream:
+                "#f4f1eb" /* Elegant warm shade to break up the pure white */,
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ['"Lato"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Base & Resets */
+      body {
+        background-color: #ffffff;
+        color: #161616;
+        overflow-x: hidden;
+      }
+
+      /* Parallax Hero */
+      .parallax-bg {
+        background-image: url("images/profile.jpeg");
+        background-attachment: fixed;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transform: scale(1.02);
+        transition: transform 0.5s ease-out;
+      }
+
+      @media (max-width: 768px) {
+        .parallax-bg {
+          background-image: url("images/profilemobile.jpeg");
+          /* different image */
+          background-attachment: scroll;
+        }
+      }
+
+      /* Masonry Grid */
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+
+      /* Image Hover Effects */
+      .img-hover img {
+        transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        will-change: transform;
+      }
+
+      .img-hover:hover img {
+        transform: scale(1.03);
+      }
+
+      /* Scroll Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 150ms;
+      }
+
+      .reveal-delay-2 {
+        transition-delay: 300ms;
+      }
+
+      .reveal-delay-3 {
+        transition-delay: 450ms;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f4f1eb;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #aaa;
+      }
+
+      /* Fixed Navbar */
+      #navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      /* Mobile Menu */
+      #mobile-menu {
+        right: -100%;
+        transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      #mobile-menu.open {
+        right: 0;
+      }
+
+      /* PPT Slide Effect Cards */
+      .slide-card {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+        border-radius: 12px;
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .slide-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+      }
+
+      /* Skills & Journey - 3-Column Portrait Grid */
+      .skills-3col-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+        align-items: stretch;
+      }
+
+      @media (max-width: 900px) {
+        .skills-3col-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+      }
+
+      .skills-col-card {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-top: 3px solid rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .skills-col-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+      }
+
+      .skills-col-heading {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: #161616;
+        line-height: 1.3;
+        margin-bottom: 1.2rem;
+      }
+
+      .skills-col-rule {
+        width: 2.5rem;
+        height: 1.5px;
+        background: #b8860b;
+        margin-bottom: 1.75rem;
+        border-radius: 2px;
+      }
+
+      .skills-col-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+
+      .skills-col-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        font-family: "Lato", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #333333;
+        line-height: 1.6;
+      }
+
+      .skills-dot {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        min-width: 5px;
+        border-radius: 50%;
+        background: #b8860b;
+        margin-top: 0.45em;
+      }
+
+      /* Modals */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      .modal-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .video-wrap {
+        width: 90%;
+        max-width: 1000px;
+        aspect-ratio: 16/9;
+      }
+
+      .video-wrap video {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background: #000;
+        display: block;
+        outline: none;
+      }
+
+      .lightbox-img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 6px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        line-height: 1;
+        transition: color 0.3s;
+        padding: 10px;
+      }
+
+      @media (min-width: 768px) {
+        .modal-close {
+          top: 30px;
+          right: 40px;
+        }
+      }
+
+      .modal-close:hover {
+        color: #b8860b;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans antialiased text-dark selection:bg-accent selection:text-white bg-light"
+  >
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 px-5 md:px-12 py-4 md:py-5 flex justify-between items-center transition-all duration-500"
+      id="navbar"
+    >
+      <a
+        href="#"
+        class="font-serif text-xl md:text-3xl tracking-[0.15em] text-dark"
+        >BHAVYA SHARMA</a
+      >
+      <div class="hidden lg:flex items-center gap-12 ml-auto">
+        <div
+          class="flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-dark/80"
+        >
+          <a href="#about" class="hover:text-accent transition-colors">About</a>
+          <a href="#achievements" class="hover:text-accent transition-colors"
+            >Experience</a
+          >
+          <a href="#gallery" class="hover:text-accent transition-colors"
+            >Gallery</a
+          >
+          <a href="#contact" class="hover:text-accent transition-colors"
+            >Contact</a
+          >
+        </div>
+        <div class="flex gap-6 text-dark/80 text-xl">
+          <a
+            href="https://www.instagram.com/being.bhavyaa"
+            target="_blank"
+            rel="noopener"
+            class="hover:text-accent transition-colors"
+            ><i class="ph ph-instagram-logo"></i
+          ></a>
+        </div>
+      </div>
+      <button
+        id="hamburger"
+        class="lg:hidden text-dark text-3xl p-1"
+        aria-label="Open menu"
+      >
+        <i class="ph ph-list" id="ham-icon"></i>
+      </button>
+    </nav>
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed top-0 right-0 z-40 w-full sm:w-80 h-screen bg-white border-l border-gray-100 flex flex-col pt-28 pb-12 px-8 sm:px-10 gap-8 shadow-2xl"
+    >
+      <div
+        class="flex flex-col gap-6 text-sm uppercase font-bold tracking-[0.2em] text-dark/80"
+      >
+        <a href="#about" class="hover:text-accent transition-colors mobile-link"
+          >About</a
+        ><a
+          href="#achievements"
+          class="hover:text-accent transition-colors mobile-link"
+          >Experience</a
+        ><a
+          href="#gallery"
+          class="hover:text-accent transition-colors mobile-link"
+          >Gallery</a
+        ><a
+          href="#contact"
+          class="hover:text-accent transition-colors mobile-link"
+          >Contact</a
+        >
+      </div>
+      <div class="flex gap-6 text-dark text-3xl mt-auto">
+        <a
+          href="https://www.instagram.com/being.bhavyaa"
+          target="_blank"
+          rel="noopener"
+          class="hover:text-accent transition-colors"
+          ><i class="ph ph-instagram-logo"></i></a
+        ><a
+          href="mailto:bhavyasharma8181@gmail.com"
+          class="hover:text-accent transition-colors"
+          ><i class="ph ph-envelope-simple"></i
+        ></a>
+      </div>
+    </div>
+    <!-- Hero -->
+    <header
+      class="relative w-full h-screen overflow-hidden flex items-center justify-center bg-cream"
+    >
+      <!-- Parallax Background Layer -->
+      <div
+        class="absolute inset-0 w-full h-full parallax-bg"
+        id="parallax-layer"
+      ></div>
+      <!-- Subtle Bottom Gradient to Cream for text readability and smooth section transition -->
+      <div
+        class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#f4f1eb] via-[#f4f1eb]/80 to-transparent"
+      ></div>
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 w-full max-w-7xl px-6 md:px-12 flex flex-col justify-end h-full pb-12 md:pb-16 pt-32"
+      >
+        <div class="max-w-2xl">
+          <h2
+            class="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-bold mb-4 md:mb-6 reveal"
+            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45)"
+          >
+            Dancer &middot; Choreographer &middot; Performing Arts Facilitator
+          </h2>
+          <h1
+            class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.9] mb-4 md:mb-6 reveal reveal-delay-1 text-dark drop-shadow-md"
+          >
+            Bhavya <br /><span class="italic font-light text-gray-800"
+              >Sharma.</span
+            >
+          </h1>
+          <p
+            class="font-sans font-medium text-gray-900 text-sm md:text-lg leading-relaxed reveal reveal-delay-2 max-w-lg"
+            style="text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6)"
+          >
+            Creating art that inspires, communicates, and brings people together
+            through movement, theatre, and expression.
+          </p>
+        </div>
+      </div>
+    </header>
+    <!-- About -->
+    <section
+      id="about"
+      class="py-24 md:py-32 px-6 md:px-12 max-w-none mx-auto bg-cream"
+    >
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
+      >
+        <div class="reveal">
+          <div class="w-12 h-px bg-accent mb-6 md:mb-8 opacity-60"></div>
+          <h2
+            class="font-serif text-4xl sm:text-5xl md:text-6xl mb-6 md:mb-8 leading-tight text-dark"
+          >
+            Crafting stories<br /><span class="italic text-gray-500"
+              >through movement.</span
+            >
+          </h2>
+          <p
+            class="text-gray-800 font-light leading-relaxed text-base md:text-lg mb-6"
+          >
+            Hi, I'm
+            <span class="text-dark font-bold">Bhavya Sharma</span> &mdash; a
+            dancer, choreographer, performing arts facilitator, and theatre
+            enthusiast.
+          </p>
+          <p
+            class="text-gray-700 font-light leading-relaxed text-base md:text-lg"
+          >
+            From leading cultural spaces to choreographing award-winning
+            performances and conducting workshops for educators and students
+            alike, I strive to create art that inspires, communicates, and
+            brings people together. My journey spans classical dance forms,
+            contemporary movement, and community theatre &mdash; each discipline
+            shaping a holistic artistic voice.
+          </p>
+          <div class="mt-10 md:mt-12 flex gap-6 md:gap-8">
+            <a
+              href="https://www.instagram.com/being.bhavyaa"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold uppercase tracking-widest text-dark/80 hover:text-accent transition-colors"
+              ><i class="ph ph-instagram-logo text-xl"></i>Instagram </a
+            ><a
+              href="mailto:bhavyasharma8181@gmail.com"
+              class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold uppercase tracking-widest text-dark/80 hover:text-accent transition-colors"
+              ><i class="ph ph-envelope-simple text-xl"></i>Email
+            </a>
+          </div>
+        </div>
+        <div
+          class="reveal reveal-delay-1 relative order-first lg:order-last mb-8 lg:mb-0"
+        >
+          <div class="img-hover overflow-hidden rounded-md shadow-2xl">
+            <img
+              src="images/About.jpeg"
+              alt="Bhavya Sharma"
+              class="w-full h-[400px] md:h-[600px] object-cover object-top"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Skills & Journey (3-Column Portrait Layout) -->
+    <section
+      id="achievements"
+      class="py-24 md:py-32 px-4 sm:px-6 md:px-12 bg-white"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-14 md:mb-20 reveal text-center">
+          <p
+            class="text-[10px] md:text-xs uppercase tracking-[0.35em] md:tracking-[0.45em] text-accent font-bold mb-4 md:mb-5"
+          >
+            Expertise &amp; Experience
+          </p>
+          <h3
+            class="text-4xl sm:text-5xl md:text-6xl font-serif italic text-dark"
+          >
+            Skills &amp; Journey
+          </h3>
+        </div>
+
+        <div class="skills-3col-grid reveal reveal-delay-1">
+          <!-- Column 1: Core Disciplines -->
+          <div class="skills-col-card">
+            <h4 class="skills-col-heading">Core Disciplines</h4>
+            <div class="skills-col-rule"></div>
+            <ul class="skills-col-list">
+              <li><span class="skills-dot"></span>Choreography</li>
+              <li><span class="skills-dot"></span>Workshop Facilitation</li>
+              <li><span class="skills-dot"></span>Stage Management</li>
+              <li><span class="skills-dot"></span>Performance Coaching</li>
+              <li><span class="skills-dot"></span>Project Management</li>
+              <li><span class="skills-dot"></span>Public Speaking</li>
+              <li><span class="skills-dot"></span>Community Outreach</li>
+              <li><span class="skills-dot"></span>Team Collaboration</li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Career Highlights -->
+          <div class="skills-col-card">
+            <h4 class="skills-col-heading">Career Highlights</h4>
+            <div class="skills-col-rule"></div>
+            <ul class="skills-col-list">
+              <li>
+                <span class="skills-dot"></span>Performing Arts Facilitator
+              </li>
+              <li><span class="skills-dot"></span>Resource Person, DIET BNN</li>
+              <li>
+                <span class="skills-dot"></span>Resource Person, DIET R.K. Puram
+              </li>
+              <li>
+                <span class="skills-dot"></span>Resource Person, DIET Moti Bagh
+              </li>
+              <li><span class="skills-dot"></span>Choreographer, VOLFEST</li>
+              <li>
+                <span class="skills-dot"></span>Kathak Dancer &amp; Performing
+                Artist
+              </li>
+              <li><span class="skills-dot"></span>Achal Welfare Foundation</li>
+              <li>
+                <span class="skills-dot"></span>Independent Stage Choreographer
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Awards & Recognition -->
+          <div class="skills-col-card">
+            <h4 class="skills-col-heading">Awards &amp; Recognition</h4>
+            <div class="skills-col-rule"></div>
+            <ul class="skills-col-list">
+              <li>
+                <span class="skills-dot"></span>1st Prize &mdash; Folk Dance,
+                Rang Tarang
+              </li>
+              <li>
+                <span class="skills-dot"></span>Trophy for Par Excellence in
+                Cultural Activities
+              </li>
+              <li>
+                <span class="skills-dot"></span>Award of Appreciation for
+                Choreography
+              </li>
+              <li>
+                <span class="skills-dot"></span>1st Prize &mdash; Street Play,
+                Vidyanjali
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-24 md:py-32 px-4 md:px-8 bg-cream">
+      <div
+        class="max-w-7xl mx-auto mb-16 md:mb-20 flex flex-col items-center text-center reveal"
+      >
+        <div class="w-12 h-px bg-accent mb-6 md:mb-8 opacity-60"></div>
+        <h2
+          class="text-4xl sm:text-5xl md:text-6xl font-serif mb-4 md:mb-6 text-dark"
+        >
+          Visual <span class="italic text-gray-500">Poetry</span>
+        </h2>
+        <p
+          class="text-gray-600 uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[10px] md:text-xs"
+        >
+          Moments caught in motion
+        </p>
+      </div>
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+      >
+        <!-- Gallery Item 1 (Image) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal cursor-pointer group shadow-lg"
+          data-lightbox="images/workshop.jpeg"
+        >
+          <img
+            src="images/workshop.jpeg"
+            alt="Workshop Session"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <!-- Gallery Item 2 (Video) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-1 group cursor-pointer shadow-lg"
+          data-video="videos/Loomina.mp4"
+        >
+          <img
+            src="images/Loomina.jpeg"
+            alt="Stage Performance"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          /><!-- Play Button Overlay -->
+          <div
+            class="absolute inset-0 flex items-center justify-center bg-dark/10 group-hover:bg-dark/30 transition-colors duration-500"
+          >
+            <div
+              class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-dark group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-500 shadow-xl"
+            >
+              <i class="ph-fill ph-play text-lg md:text-xl ml-1"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Gallery Item 3 (Image) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-2 cursor-pointer group shadow-lg"
+          data-lightbox="images/2.jpeg"
+        >
+          <img
+            src="images/2.jpeg"
+            alt="Dance Outfit Showcase"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <!-- Gallery Item 4 (Image) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal cursor-pointer group shadow-lg"
+          data-lightbox="images/3.jpeg"
+        >
+          <img
+            src="images/3.jpeg"
+            alt="Rehearsal Session"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <!-- Gallery Item 5 (Video) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-1 group cursor-pointer shadow-lg"
+          data-video="videos/rangtarang.mp4"
+        >
+          <img
+            src="images/rangtarang.jpeg"
+            alt="Performance Showcase"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div
+            class="absolute inset-0 flex items-center justify-center bg-dark/10 group-hover:bg-dark/30 transition-colors duration-500"
+          >
+            <div
+              class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-dark group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-500 shadow-xl"
+            >
+              <i class="ph-fill ph-play text-lg md:text-xl ml-1"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Gallery Item 6 (Image) -->
+        <div
+          class="relative overflow-hidden rounded-xl aspect-video img-hover reveal reveal-delay-2 cursor-pointer group shadow-lg"
+          data-lightbox="images/1.jpeg"
+        >
+          <img
+            src="images/1.jpeg"
+            alt="Creative Concept"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+    <section id="contact" class="py-24 md:py-32 px-6 md:px-12 bg-white">
+      <div
+        class="max-w-7xl mx-auto flex flex-col items-center text-center reveal"
+      >
+        <p
+          class="text-xs uppercase tracking-[0.3em] md:tracking-[0.4em] text-accent font-bold mb-4 md:mb-6"
+        >
+          Let's Connect
+        </p>
+        <h2
+          class="font-serif text-4xl sm:text-5xl md:text-7xl leading-tight mb-6 md:mb-8 text-dark"
+        >
+          Got a project <span class="italic text-gray-500">in mind?</span>
+        </h2>
+        <p
+          class="text-gray-700 font-light leading-relaxed text-base md:text-lg mb-10 md:mb-12 max-w-lg"
+        >
+          Interested in collaborating, booking a workshop, or simply want to say
+          hello? I'd love to hear from you.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
+          <a
+            href="mailto:bhavyasharma8181@gmail.com"
+            class="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-dark text-white font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-500 rounded-md w-full sm:w-auto"
+            ><i class="ph ph-envelope-simple text-lg"></i>Email Me </a
+          ><a
+            href="https://www.instagram.com/being.bhavyaa"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 border-2 border-gray-200 text-dark hover:border-accent hover:text-accent font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] transition-colors duration-500 rounded-md w-full sm:w-auto"
+            ><i class="ph ph-instagram-logo text-lg"></i>@being.bhavyaa
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="py-12 md:py-16 px-6 border-t border-gray-200 bg-cream">
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8"
+      >
+        <h2 class="font-serif text-2xl md:text-3xl italic text-gray-800">
+          Bhavya Sharma.
+        </h2>
+        <p
+          class="text-[10px] md:text-xs tracking-widest text-gray-500 uppercase font-bold"
+        >
+          &copy; 2026 Bhavya Sharma.
+        </p>
+      </div>
+    </footer>
+    <!-- Video Modal -->
+    <div class="modal-backdrop" id="video-modal">
+      <button class="modal-close" id="video-close" aria-label="Close video">
+        &times;
+      </button>
+      <div class="video-wrap">
+        <video id="video-player" controls playsinline></video>
+      </div>
+    </div>
+    <!-- Lightbox Modal -->
+    <div class="modal-backdrop" id="lightbox-modal">
+      <button class="modal-close" id="lightbox-close" aria-label="Close image">
+        &times;</button
+      ><img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged view" />
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Intersection Observer for Scroll Reveal Animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+
+          observerOptions,
+        );
+
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => observer.observe(el));
+
+        // 2. Simple Parallax Effect for Hero Image
+        const parallaxLayer = document.getElementById("parallax-layer");
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            let scrollPos = window.scrollY;
+
+            if (scrollPos < window.innerHeight) {
+              parallaxLayer.style.transform = `scale(1.02) translateY(${scrollPos * 0.35}px)`;
+            }
+          },
+
+          {
+            passive: true,
+          },
+        );
+
+        // 3. Mobile Menu
+        const ham = document.getElementById("hamburger");
+        const hamIcon = document.getElementById("ham-icon");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        ham.addEventListener("click", () => {
+          const isOpen = mobileMenu.classList.toggle("open");
+          hamIcon.className = isOpen ? "ph ph-x" : "ph ph-list";
+        });
+
+        document.querySelectorAll(".mobile-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+            hamIcon.className = "ph ph-list";
+          });
+        });
+
+        // 4. Video Modal
+        const videoModal = document.getElementById("video-modal");
+        const videoPlayer = document.getElementById("video-player");
+        const videoClose = document.getElementById("video-close");
+
+        document.querySelectorAll("[data-video]").forEach((item) => {
+          item.addEventListener("click", () => {
+            videoPlayer.src = item.dataset.video;
+            videoModal.classList.add("active");
+
+            videoPlayer.play().catch(() => {});
+          });
+        });
+
+        function closeVideo() {
+          videoPlayer.pause();
+          videoPlayer.src = "";
+          videoModal.classList.remove("active");
+        }
+
+        videoClose.addEventListener("click", closeVideo);
+
+        videoModal.addEventListener("click", (e) => {
+          if (e.target === videoModal) closeVideo();
+        });
+
+        // 5. Lightbox Modal
+        const lightboxModal = document.getElementById("lightbox-modal");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxClose = document.getElementById("lightbox-close");
+
+        document.querySelectorAll("[data-lightbox]").forEach((item) => {
+          item.addEventListener("click", () => {
+            lightboxImg.src = item.dataset.lightbox;
+            lightboxModal.classList.add("active");
+          });
+        });
+
+        function closeLightbox() {
+          lightboxModal.classList.remove("active");
+          lightboxImg.src = "";
+        }
+
+        lightboxClose.addEventListener("click", closeLightbox);
+
+        lightboxModal.addEventListener("click", (e) => {
+          if (e.target === lightboxModal) closeLightbox();
+        });
+
+        // 6. Keyboard Escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeVideo();
+            closeLightbox();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
