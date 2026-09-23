@@ -372,7 +372,7 @@
         <img
           src="images/profile.jpeg"
           alt="Bhavya Sharma"
-          class="w-full h-full object-cover object-top scale-[1.02] will-change-transform"
+          class="w-full h-full object-cover object-top scale-[1.02] md:will-change-transform"
         />
       </picture>
 
@@ -412,7 +412,7 @@
             Crafting stories<br /><span class="italic text-gray-500">through movement.</span>
           </h2>
           <p class="text-gray-800 font-light leading-relaxed text-base md:text-lg mb-6">
-            Hi, I'm <span class="text-dark font-bold">Bhavya Sharma</span> &mdash; a dancer, choreographer, performing arts facilitator, and theatre enthusiast.
+            Hi, I'm <span class="text-dark font-bold">Bhavy Sharma</span> &mdash; a dancer, choreographer, performing arts facilitator, and theatre enthusiast.
           </p>
           <p class="text-gray-700 font-light leading-relaxed text-base md:text-lg">
             From leading cultural spaces to choreographing award-winning performances and conducting workshops for educators and students alike, I strive to create art that inspires, communicates, and brings people together. My journey spans classical dance forms, contemporary movement, and community theatre &mdash; each discipline shaping a holistic artistic voice.
@@ -618,24 +618,25 @@
         const parallaxLayer = document.getElementById("parallax-layer");
         let ticking = false;
 
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (window.innerWidth <= 768) return;
-
-            if (!ticking) {
-              window.requestAnimationFrame(() => {
-                let scrollPos = window.scrollY;
-                if (scrollPos < window.innerHeight) {
-                  parallaxLayer.style.transform = `translate3d(0, ${scrollPos * 0.35}px, 0)`;
-                }
-                ticking = false;
-              });
-              ticking = true;
-            }
-          },
-          { passive: true }
-        );
+        // Only attach the scroll listener on desktop devices
+        if (window.matchMedia("(min-width: 769px)").matches) {
+          window.addEventListener(
+            "scroll",
+            () => {
+              if (!ticking) {
+                window.requestAnimationFrame(() => {
+                  let scrollPos = window.scrollY;
+                  if (scrollPos < window.innerHeight) {
+                    parallaxLayer.style.transform = `translate3d(0, ${scrollPos * 0.35}px, 0)`;
+                  }
+                  ticking = false;
+                });
+                ticking = true;
+              }
+            },
+            { passive: true }
+          );
+        }
 
         // 3. Mobile Navigation Menu
         const ham = document.getElementById("hamburger");
