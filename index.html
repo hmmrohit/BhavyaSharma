@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <title>Bhavya Sharma | Dancer & Performing Arts Facilitator</title>
     <meta
       name="description"
-      content="Portfolio of Bhavya Sharma â€” dancer, choreographer, performing arts facilitator, and theatre enthusiast."
+      content="Portfolio of Bhavya Sharma — dancer, choreographer, performing arts facilitator, and theatre enthusiast."
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,7 +54,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         transform: scale(1.02);
-        transition: transform 0.5s ease-out;
+        will-change: transform;
       }
 
       @media (max-width: 768px) {
@@ -812,22 +812,28 @@
           .querySelectorAll(".reveal")
           .forEach((el) => observer.observe(el));
 
-        // 2. Simple Parallax Effect for Hero Image
+        // 2. Optimized Parallax Effect
         const parallaxLayer = document.getElementById("parallax-layer");
+        let ticking = false;
 
         window.addEventListener(
           "scroll",
           () => {
-            let scrollPos = window.scrollY;
+            // Disable JS parallax on mobile screens to rely on smooth native scrolling
+            if (window.innerWidth <= 768) return;
 
-            if (scrollPos < window.innerHeight) {
-              parallaxLayer.style.transform = `scale(1.02) translateY(${scrollPos * 0.35}px)`;
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                let scrollPos = window.scrollY;
+                if (scrollPos < window.innerHeight) {
+                  parallaxLayer.style.transform = `scale(1.02) translateY(${scrollPos * 0.35}px)`;
+                }
+                ticking = false;
+              });
+              ticking = true;
             }
           },
-
-          {
-            passive: true,
-          },
+          { passive: true }
         );
 
         // 3. Mobile Menu
