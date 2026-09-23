@@ -74,20 +74,21 @@
       /* Image Hover Effects */
       .img-hover img {
         transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-        will-change: transform;
       }
 
-      .img-hover:hover img {
-        transform: scale(1.03);
+      /* Only allow hover zoom on devices with a mouse/pointer */
+      @media (hover: hover) and (pointer: fine) {
+        .img-hover:hover img {
+          transform: scale(1.03);
+        }
       }
 
-      /* Scroll Animations (Optimized for GPU) */
+      /* Scroll Animations (Optimized for mobile) */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
         transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
                     transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-        will-change: opacity, transform;
       }
 
       .reveal.active {
@@ -484,7 +485,7 @@
               <li><span class="skills-dot"></span>Resource Person, DIET Moti Bagh</li>
               <li><span class="skills-dot"></span>Choreographer, VOLFEST</li>
               <li><span class="skills-dot"></span>Kathak Dancer &amp; Performing Artist</li>
-              <li><span class="skills-dot"></span>Member, Achal Welfare Foundation</li>
+              <li><span class="skills-dot"></span>Achal Welfare Foundation</li>
               <li><span class="skills-dot"></span>Independent Stage Choreographer</li>
             </ul>
           </div>
